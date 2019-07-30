@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>jQuery Básico</title>	
+
+    </head>
+    <body>
+
+        <form id="prueba">
+            <select id="regiones" name="regiones">
+                <option>RM</option>
+                <option>I</option>
+                <option>II</option>
+                <option>III</option>
+                <option>IV</option>
+                <option>V</option>
+            </select>
+
+            <select id="comunas" name="comunas">
+                <option>Santiago</option>
+                <option>Cerro Navia</option>
+                <option>Quinta Normal</option>
+                <option>Pudahuel</option>
+                <option>Renca</option>
+                <option>Maipú</option>
+            </select>
+        </form>
+
+        <script
+            src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        <script>
+            $(function () {
+                console.log('Saludos desde JS y jQuery');
+
+                $("select#regiones").blur(function (event) {
+                    var comunas = ['Cerro Navia', 'Qta Normal', 'San Joaquín', 'San Ramón'];
+                    var region = $(this).val();
+                    console.log("Se ha escogido la región " + region);
+                    var selectComunas = $("select#comunas");
+                    selectComunas
+                            .find('option')
+                            .remove()
+                            ;
+                    if (region == 'RM') {
+                        for (var i in comunas) {
+                            selectComunas
+                                    .append('<option>' + comunas[i] + '</option>')
+                                    ;
+                        }
+                    }
+
+                });
+            });
+        </script>
+    </body>
+</html>
